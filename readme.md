@@ -68,7 +68,7 @@ func main() {
 	}
 	defer listener.Close()
 
-	a := agent.New(handler, logger.NewDefaultLog())
+	a := agent.New(handler, logger.NewDefaultLog(), stats.NewNullStatter())
 
 	if err := a.Serve(listener); err != nil {
 		log.Printf("error agent serve: %+v\n", err)
