@@ -36,7 +36,7 @@ func (agent *Agent) Serve(listener net.Listener) error {
 			return err
 		}
 
-		agent.statter.Count("accept", 1)
+		agent.statter.Count("accept", 1, stats.Tags{})
 		go worker.Handle(conn, agent.handler, agent.logger)
 	}
 }
