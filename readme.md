@@ -188,3 +188,9 @@ Returns value by name. If key doesn't exist, last returned value will be set to 
 ```
 ipValue, ok := message.KV.Get("ip")
 ```
+
+## Metrics
+
+Agents can be configured to emit metrics on a `stats.Statter` interface. The following metrics are emitted:
+
+1. `accept` - this count metric increments by one when a new connection is accepted
