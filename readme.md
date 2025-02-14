@@ -68,7 +68,10 @@ func main() {
 	}
 	defer listener.Close()
 
-	a := agent.New(handler, logger.NewDefaultLog(), stats.NewNullStatter())
+	a := agent.New(handler, logger.NewDefaultLog())
+
+	// optionally, include your own statter
+	a = agent.WithStatter(agent, stats.NewNullStatter())
 
 	if err := a.Serve(listener); err != nil {
 		log.Printf("error agent serve: %+v\n", err)

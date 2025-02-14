@@ -9,13 +9,19 @@ import (
 	"github.com/negasus/haproxy-spoe-go/worker"
 )
 
-func New(handler func(*request.Request), logger logger.Logger, statter stats.Statter) *Agent {
+func New(handler func(*request.Request), logger logger.Logger) *Agent {
 	agent := &Agent{
 		handler: handler,
 		logger:  logger,
-		statter: statter,
+		statter: stats.NewNullStatter(),
 	}
 
+	return agent
+}
+
+// WithStatter wraps the provided agent with the given statter
+func WithStatter(agent *Agent, statter stats.Statter) *Agent {
+	agent.statter = statter
 	return agent
 }
 
